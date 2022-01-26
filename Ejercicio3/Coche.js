@@ -3,41 +3,48 @@
 window.onload = inicializaEventos;
 
 function inicializaEventos(){
+    /*
+    var marcasJS=["Seat","Mercedes","Toyota"];
+    var option;
     
-    
-    document.getElementById("marcas").addEventListener("change", cargarModelos, false);
-    
+    //añadir opciones
+    for(var i=0;i<marcasJS.length;i++){
+        option = document.createElement("option");
+        option.text = marcasJS[i];
+        selectMarcas.add(option);
+      }
+      */
+      var selectMarcas=document.getElementById("marcas");
+      cargarModelos();
+    //document.getElementById("marcas").addEventListener("change", cargarModelos, false);
+    selectMarcas.addEventListener("change", cargarModelos, false);
 }
 
 function cargarModelos(){
-    var modelosJs;
-    var modelosSeat=new Array("Ibiza", "Cordoba", "Leon");
-    var modelosMercedes=new Array("Clase A", "Clase C", "Clase G");
-    var modelosToyota=new Array("Auris", "Corolla", "Yaris");
-    //modelosJs=document.getElementById('modelos');
+    var modelosJS;
+    var modelosSeat=["Ibiza", "Cordoba", "Leon"];
+    var modelosMercedes=["Clase A", "Clase C", "Clase G"];
+    var modelosToyota=["Auris", "Corolla", "Yaris"];
     
-    //limpiar el select antes de asignarle un nuevo array
-    document.getElementById("modelos").innerHTML='<option value="">-</option>';
-
-    //añadirle opciones al select
-    modelosJs = document.getElementById('modelos');
+    document.getElementById("modelos").innerHTML=null;
     
-
-    var miMarca=document.getElementById('marcas');
-    
-    switch(miMarca){
-        case 'Seat': 
-            
-            document.getElementById("modelos").value=modelosSeat;
+    //ESTO NO LO ENTIENDO!!!
+    switch(document.getElementById("marcas").options[document.getElementById("marcas").selectedIndex].text){
+        case "Seat":
+            modelosJS=modelosSeat;
         break;
-        case 'Mercedes': 
-            document.getElementById("modelos").value=modelosMercedes;
+        case "Mercedes":
+            modelosJS = modelosMercedes;
         break;
-        case 'Toyota': 
-            document.getElementById("modelos").value=modelosToyota;
+        case "Toyota":
+            modelosJS=modelosToyota;
         break;
     }
-}
-function limpiar(){
-
+    //llenar las opciones
+    var option;
+    for(var i=0;i<modelosJS.length;i++){
+        option=document.createElement("option");
+        option.text=modelosJS[i];
+        document.getElementById("modelos").add(option);
+    }
 }
